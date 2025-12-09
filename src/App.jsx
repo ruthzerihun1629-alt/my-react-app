@@ -1,39 +1,59 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function MiniCalculator() {
+  const [input, setInput] = useState("")
+
+  function addValue(value) {
+    setInput(input + value)
+  }
+
+  function calculate() {
+    try {
+      const result = Function(`return (${input})`)()
+      setInput(String(result))
+    } catch (e) {
+      setInput("Error")
+    }
+  }
+
+  function reset() {
+    setInput("")
+  }
 
   return (
     <div>
-      <h1>Welcome to The Cozy Bookstore and Coffee House</h1>
-      <h2>Your Local Bookstore & Coffee Retreat</h2>
+      <h1>Mini Calculator</h1>
+      <br/>
 
-      <p>
-        The Cozy Corner is a warm, peaceful place for book lovers, dreamers,
-        students, and anyone who wants to relax with a good story and a fresh
-        cup of coffee.
-      </p>
+      <h2> {input}</h2>
+<button onClick={reset} style={{ width: "200px" }}>c</button>
+  <br />
 
-      <h3>What We Offer</h3>
-      <ul>
-        <li>Different genre books like fantasy, romance, mystery, and a lot more</li>
-        <li>Quiet reading corners</li>
-        <li>Freshly brewed coffee, tea, and pastries</li>
-        <li>Community events: book clubs, poetry nights, and workshops</li>
-      </ul>
+      <button onClick={() => addValue("1")}>1</button>
+      <button onClick={() => addValue("2")}>2</button>
+      <button onClick={() => addValue("3")}>3</button>
+      <button onClick={() => addValue("+")}>+</button>
+      <br />
 
-      <h3>Upcoming Features</h3>
-      <ul>
-        <li>Online book recommendations</li>
-        <li>Membership perks for regular visitors</li>
-        <li>Digital menu for the coffee shop</li>
-      </ul>
+      <button onClick={() => addValue("4")}>4</button>
+      <button onClick={() => addValue("5")}>5</button>
+      <button onClick={() => addValue("6")}>6</button>
+      <button onClick={() => addValue("-")}>-</button>
+      <br />
+
+      <button onClick={() => addValue("7")}>7</button>
+      <button onClick={() => addValue("8")}>8</button>
+      <button onClick={() => addValue("9")}>9</button>
+      <button onClick={() => addValue("*")}>*</button>
+      <br />
+
+        <button onClick={() => addValue(".")}>.</button>
+      <button onClick={() => addValue("0")}>0</button>
+      <button onClick={() => calculate()}>=</button>
+      <button onClick={() => addValue("/")}>/</button>
     </div>
-
   )
 }
 
-export default App
+export default MiniCalculator;
+
